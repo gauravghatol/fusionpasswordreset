@@ -1,0 +1,59 @@
+@model UserSearchViewModel
+@{
+    ViewData["Title"] = "Search Oracle User";
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h1 class="h4 mb-4">Search Oracle user</h1>
+                <form asp-action="Search" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label asp-for="InstanceId" class="form-label"></label>
+                            <select asp-for="InstanceId" class="form-select">
+                                <option value="">Select instance</option>
+                                @foreach (var instance in Model.Instances)
+                                {
+                                    <option value="@instance.Id">@instance.InstanceName (@instance.EnvironmentName)</option>
+                                }
+                            </select>
+                            <span asp-validation-for="InstanceId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-8">
+                            <label asp-for="UserNameOrEmail" class="form-label"></label>
+                            <input asp-for="UserNameOrEmail" class="form-control" />
+                            <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4">Search</button>
+                </form>
+
+                @if (Model.SearchResult is not null)
+                {
+                    <hr class="my-4" />
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h2 class="h5 mb-1">@Model.SearchResult.DisplayName</h2>
+                            <div class="text-secondary">@Model.SearchResult.Email</div>
+                            <div class="text-secondary">@Model.SearchResult.Status</div>
+                        </div>
+                        <a class="btn btn-success"
+                           asp-action="Reset"
+                           asp-route-instanceId="@Model.InstanceId"
+                           asp-route-userName="@Model.SearchResult.UserName"
+                           asp-route-email="@Model.SearchResult.Email">
+                            Reset Password
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

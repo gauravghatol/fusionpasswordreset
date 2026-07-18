@@ -1,0 +1,32 @@
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h2 class="h4">Welcome, @Model.DisplayName</h2>
+                <p class="text-secondary mb-4">@Model.Email</p>
+                <a asp-controller="PasswordReset" asp-action="Search" class="btn btn-primary">Start Oracle Password Reset</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h3 class="h5">Available Instances</h3>
+                <ul class="list-group list-group-flush">
+                    @foreach (var instance in Model.Instances)
+                    {
+                        <li class="list-group-item px-0">
+                            <strong>@instance.InstanceName</strong><br />
+                            <span class="text-secondary">@instance.EnvironmentName</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
