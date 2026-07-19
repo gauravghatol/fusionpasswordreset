@@ -7,7 +7,7 @@ namespace FusionPasswordResetPortal.Application.Services;
 public class ValidationService : IValidationService
 {
     private static readonly Regex EmailRegex = new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-    private static readonly string[] RestrictedAccounts = ["admin", "service", "integration", "sys"];
+    private static readonly string[] RestrictedAccounts = { "admin", "service", "integration", "sys" };
 
     public bool IsRestrictedAccount(string userNameOrEmail)
     {

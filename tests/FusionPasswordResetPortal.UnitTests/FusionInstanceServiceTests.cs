@@ -13,7 +13,8 @@ public class FusionInstanceServiceTests
     {
         var repository = new Mock<IFusionInstanceRepository>();
         repository.Setup(x => x.GetActiveInstancesAsync(It.IsAny<CancellationToken>()))
-            .ReturnsAsync([
+            .ReturnsAsync(new[]
+            {
                 new FusionResetPasswordInstance
                 {
                     Id = 7,
@@ -23,7 +24,7 @@ public class FusionInstanceServiceTests
                     ApiBaseUrl = "https://example",
                     CreatedBy = "test"
                 }
-            ]);
+            });
 
         var service = new FusionInstanceService(repository.Object);
         var result = await service.GetActiveInstancesAsync();
