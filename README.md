@@ -6,7 +6,7 @@ Use the steps in order. Do not skip ahead to deployment before the earlier integ
 
 ## 1. What This Repository Is Right Now
 
-This repository is a clean-architecture ASP.NET Core MVC `.NET 8` foundation for an Oracle Fusion password reset portal.
+This repository is a clean-architecture ASP.NET Core MVC `.NET 7` foundation for an Oracle Fusion password reset portal.
 
 It already includes:
 
@@ -44,8 +44,8 @@ Follow this order:
 
 Before doing any client work, install the following:
 
-- `.NET 8 SDK`
-- `.NET 8 ASP.NET Core Runtime`
+- `.NET 7 SDK`
+- `.NET 7 ASP.NET Core Runtime`
 - Visual Studio 2022 or later, or VS Code with C# tooling
 - SQL Server access tools
 - Azure CLI
@@ -53,7 +53,8 @@ Before doing any client work, install the following:
 
 Important:
 
-- As of Friday, July 17, 2026, this machine can build the solution using the installed SDK tooling, but `dotnet test` needs the `.NET 8 runtime` installed because the app targets `net8.0`.
+- As of Sunday, July 19, 2026, the repository targets `net7.0` and builds successfully on this machine.
+- Important: `.NET 7` is out of support as of Sunday, July 19, 2026, so it should only be used if your client environment explicitly requires it.
 
 ## 4. Create the GitHub Repository
 
@@ -147,7 +148,7 @@ Current status:
 
 Steps:
 
-1. Install the `.NET 8 runtime` if missing.
+1. Install the `.NET 7 runtime` if missing.
 2. Run `dotnet restore`.
 3. Run `dotnet build`.
 4. Add the first migration.
@@ -340,7 +341,7 @@ Confirm:
 
 ## 16. Run Local Build and Test Validation
 
-When the machine has `.NET 8 runtime` installed, use this sequence:
+When the machine has `.NET 7 runtime` installed, use this sequence:
 
 ```powershell
 dotnet restore
@@ -437,7 +438,7 @@ Only go live after:
 
 This is the exact practical sequence I recommend next:
 
-1. Install `.NET 8 runtime`
+1. Install `.NET 7 runtime`
 2. create the GitHub repository
 3. push this source
 4. collect real client values and API samples
